@@ -10,6 +10,15 @@ void yyerror(char *);
 
 
 %%
+  
+[0-9]+\.*[0-9]*  {
+        for(int i = 0; i<yyleng;i++){
+          yylval.fval = atof(yytext);
+        }
+        printf("Achei fator: %f\n",yylval.fval);
+        return FATOR;
+}
+
 
 [a-z]  {
         yylval.ival = yytext[0] - 'a';
@@ -31,6 +40,20 @@ void yyerror(char *);
 [=]     {
           return IGUAL;
         }
+
+[/]     {
+    return DIVISAO; 
+}
+[*]     {
+  return SINAL;
+}
+[\[]   {
+  return ABRECOL;
+}
+[\]]   {
+  return FECHACOL;
+}
+
 
 \n   {
          return EOL;

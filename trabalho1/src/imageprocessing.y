@@ -10,14 +10,22 @@ int yylex(void);
 %union {
   char    strval[50];
   int     ival;
+  float fval;
 }
 %token <strval> STRING
-%token <ival> VAR IGUAL EOL ASPA
-%left SOMA
+%token <ival> VAR IGUAL EOL ASPA 
+%token <fval> FATOR
+%left SOMA SINAL DIVISAO ABRECOL FECHACOL
 
 %%
 
 PROGRAMA:
+        ABRECOL  FECHACOL
+        |
+        PROGRAMA EXPRESSAO DIVISAO FATOR EOL
+        |
+        PROGRAMA EXPRESSAO SINAL FATOR EOL
+        |
         PROGRAMA EXPRESSAO EOL
         |
         ;
@@ -28,7 +36,6 @@ EXPRESSAO:
         imagem I = abrir_imagem($3);
         printf("Li imagem %d por %d\n", I.width, I.height);
         salvar_imagem($1, &I);
-        liberar_imagem(&I);
                           }
 
     ;
