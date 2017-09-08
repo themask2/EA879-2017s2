@@ -15,13 +15,14 @@ int yylex(void);
 %token <strval> STRING
 %token <ival> VAR IGUAL EOL ASPA 
 %token <fval> FATOR
-%left SOMA SINAL DIVISAO ABRECOL FECHACOL
+%left SOMA SINAL DIVISAO ABRECOL FECHACOL FIM
 
 %%
 
 PROGRAMA:
-        ABRECOL STRING FECHACOL EOL{
-          
+        PROGRAMA ABRECOL STRING FECHACOL EOL{
+        imagem I = abrir_imagem_retornapixel($3);
+        salvar_imagem($3,&I,1);
         }
         |
         PROGRAMA STRING IGUAL STRING DIVISAO FATOR EOL{
@@ -45,7 +46,13 @@ PROGRAMA:
         salvar_imagem($2, &I,1);
         }
         |
+        Programa FIM EOL{
+        printf("Programa finalizado.\n");
+        return 0;
+        }
+        |
         ;
+
 
 
 %%

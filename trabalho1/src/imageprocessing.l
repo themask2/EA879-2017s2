@@ -60,6 +60,9 @@ void yyerror(char *);
 \n   {
          return EOL;
        }
+\; {
+  return FIM;
+}
 
 [ \t]+ ;
 
