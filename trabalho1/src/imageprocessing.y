@@ -21,28 +21,32 @@ int yylex(void);
 
 PROGRAMA:
         ABRECOL STRING FECHACOL EOL{
-          printf("kkk eae men");
+          
         }
         |
-        PROGRAMA EXPRESSAO DIVISAO FATOR EOL{
-          printf("Entro em divisao");
+        PROGRAMA STRING IGUAL STRING DIVISAO FATOR EOL{
+        printf("Copiando %s para %s\n", $4, $2);
+        imagem I = abrir_imagem($4);
+        printf("Li imagem %d por %d\n", I.width, I.height);
+        salvar_imagem($2, &I,1/$6); //o ultimo argumento dessa funçao eh o fator que se multiplica cada pixel
         }
         |
-        PROGRAMA EXPRESSAO SINAL FATOR EOL
+        PROGRAMA STRING IGUAL STRING SINAL FATOR EOL{
+        printf("Copiando %s para %s\n", $4, $2);
+        imagem I = abrir_imagem($4);
+        printf("Li imagem %d por %d\n", I.width, I.height);
+        salvar_imagem($2, &I,$6);
+        }
         |
-        PROGRAMA EXPRESSAO EOL
+        PROGRAMA STRING IGUAL STRING EOL{
+        printf("Copiando %s para %s\n", $4, $2);
+        imagem I = abrir_imagem($4);
+        printf("Li imagem %d por %d\n", I.width, I.height);
+        salvar_imagem($2, &I,1);
+        }
         |
         ;
 
-EXPRESSAO:
-    | STRING IGUAL STRING {
-        printf("Copiando %s para %s\n", $3, $1);
-        imagem I = abrir_imagem($3);
-        printf("Li imagem %d por %d\n", I.width, I.height);
-        salvar_imagem($1, &I,54); //o ultimo argumento dessa funçao eh o fator que se multiplica cada pixel
-                          }
-
-    ;
 
 %%
 
