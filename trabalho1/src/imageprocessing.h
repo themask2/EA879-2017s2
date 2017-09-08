@@ -9,7 +9,7 @@ typedef struct {
 } imagem;
 
 imagem abrir_imagem(char *nome_do_arquivo);
-void salvar_imagem(char *nome_do_arquivo, imagem *I);
+void salvar_imagem(char *nome_do_arquivo, imagem *I,float mult);
 void liberar_imagem(imagem *i);
 
 #endif

@@ -39,7 +39,7 @@ EXPRESSAO:
         printf("Copiando %s para %s\n", $3, $1);
         imagem I = abrir_imagem($3);
         printf("Li imagem %d por %d\n", I.width, I.height);
-        salvar_imagem($1, &I);
+        salvar_imagem($1, &I,54); //o ultimo argumento dessa funçao eh o fator que se multiplica cada pixel
                           }
 
     ;

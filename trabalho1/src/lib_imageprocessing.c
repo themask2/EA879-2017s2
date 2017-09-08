@@ -51,7 +51,7 @@ imagem abrir_imagem(char *nome_do_arquivo) {
 
 }
 
-void salvar_imagem(char *nome_do_arquivo, imagem *I) {
+void salvar_imagem(char *nome_do_arquivo, imagem *I,float mult) {
   FIBITMAP *bitmapOut;
   RGBQUAD color;
 
@@ -63,9 +63,9 @@ void salvar_imagem(char *nome_do_arquivo, imagem *I) {
       int idx;
 
       idx = i + (j*I->width);
-      color.rgbRed = I->r[idx];
-      color.rgbGreen = I->g[idx];
-      color.rgbBlue = I->b[idx];
+      color.rgbRed = mult*(I->r[idx]);
+      color.rgbGreen = mult*(I->g[idx]);
+      color.rgbBlue = mult*(I->b[idx]);
 
       FreeImage_SetPixelColor(bitmapOut, i, j, &color);
     }
