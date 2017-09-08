@@ -47,10 +47,12 @@ void yyerror(char *);
 [*]     {
   return SINAL;
 }
-[\[]   {
+\[  {
+  printf("abre\n");
   return ABRECOL;
 }
-[\]]   {
+\]   {
+  printf("fecha\n");
   return FECHACOL;
 }
 

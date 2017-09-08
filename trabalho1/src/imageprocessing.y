@@ -20,9 +20,13 @@ int yylex(void);
 %%
 
 PROGRAMA:
-        ABRECOL  FECHACOL
+        ABRECOL STRING FECHACOL EOL{
+          printf("kkk eae men");
+        }
         |
-        PROGRAMA EXPRESSAO DIVISAO FATOR EOL
+        PROGRAMA EXPRESSAO DIVISAO FATOR EOL{
+          printf("Entro em divisao");
+        }
         |
         PROGRAMA EXPRESSAO SINAL FATOR EOL
         |
